@@ -27,6 +27,7 @@ echo "is_component_build = false" >> ${RELEASE}/args.gn
 echo "v8_static_library = true" >> ${RELEASE}/args.gn
 echo "use_custom_libcxx = false" >> ${RELEASE}/args.gn
 echo "use_custom_libcxx_for_host = false" >> ${RELEASE}/args.gn
+echo "cc_wrapper = \"ccache\"" >> ${RELEASE}/args.gn
 export CONFIG_DEFAULT_WARNINGS_LINE=$(grep --line-number "^config(\"default\_warnings\") {$" build/config/compiler/BUILD.gn | cut -f1 -d:)
 export IS_CLANG_LINE=$(tail -n +${CONFIG_DEFAULT_WARNINGS_LINE} build/config/compiler/BUILD.gn | grep --line-number "^  if (is\_clang) {$" | head -n 1 | cut -f1 -d:)
 export INSERT_CFLAGS_LINE=$((CONFIG_DEFAULT_WARNINGS_LINE + IS_CLANG_LINE + 1))
@@ -38,6 +39,11 @@ ex -s -c "${INSERT_CFLAGS_LINE}i|      \"-Wno-defaulted-function-deleted\"," -c 
 cd ./base/trace_event/common
 git checkout 211b3ed9d0481b4caddbee1322321b86a483ca1f
 cd ../../../
+
+# from the chromium docs
+export CCACHE_CPP2=yes
+export CCACHE_SLOPPINESS=time_macros
+export PATH="$(pwd)/third_party/llvm-build/Release+Asserts/bin:${PATH}"
 
 # finally build
 gn gen ${RELEASE}
