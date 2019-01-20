@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 ARGS="$@"
 
 echo "Building ${ARGS}"
