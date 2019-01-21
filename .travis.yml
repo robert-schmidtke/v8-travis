@@ -15,7 +15,11 @@ cache:
 
 jobs:
   include:
-    - stage: "Build icu"
+    - stage: "Fetch V8"
+      script: ./fetch-v8.sh
+    - stage: "Build third_party"
+      script: ./build.sh antlr4
+    - stage: "Build third_party"
       script: ./build.sh icu
     - stage: "Build d8, v8"
       script: ./build.sh d8 v8
