@@ -13,9 +13,10 @@ cd ./v8build
 
 # export necessary variables nonetheless
 export PATH=${PATH}:$(pwd)/depot_tools
-export RELEASE=out.gn/x64.release
 
 cd ./v8
+
+export RELEASE=out.gn/x64.release
 
 # from the chromium docs
 export CCACHE_CPP2=yes
