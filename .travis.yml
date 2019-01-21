@@ -1,12 +1,17 @@
 os: osx
 osx_image: xcode10.1
 
+language: cpp
+
 addons:
   homebrew:
     packages:
       - ccache
 
-cache: ccache
+cache:
+  ccache: true
+  directories:
+    - ./v8build
 
 jobs:
   include:
