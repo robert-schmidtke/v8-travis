@@ -9,6 +9,8 @@ addons:
       - ccache
 
 cache:
+  # large cache requires large timeout for transfer
+  timeout: 1800
   ccache: true
   directories:
     - ./v8build
