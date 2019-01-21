@@ -43,7 +43,7 @@ if [ ! -d "./v8build/v8" ]; then
   cd ../../../
 else
   # export necessary variables nonetheless
-  export PATH=${PATH}:$(pwd)/depot_tools
+  export PATH=${PATH}:$(pwd)/v8build/depot_tools
   export RELEASE=out.gn/x64.release
 fi
 
