@@ -20,7 +20,7 @@ jobs:
     - stage: fetch-v8
       script: ./fetch-v8.sh
     - stage: build-v8-stage-1
-      script: ./build.sh antlr4 icu torque v8_libbase v8_libplatform v8_libsampler
+      script: ./build.sh antlr4 icu inspector torque v8_libbase v8_libplatform v8_libsampler
     - stage: build-v8-stage-2
       script: ./build.sh v8_base
     - stage: build-v8-stage-3
