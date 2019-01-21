@@ -10,9 +10,9 @@ echo "Building ${ARGS}"
 export PATH="/usr/local/opt/ccache/libexec:$PATH"
 
 # fetch V8 if necessary
-if [ ! -d "./v8build/v8" ]; then
+cd ./v8build
+if [ ! -d "./v8" ]; then
   # get the Google depot tools
-  cd ./v8build
   git clone --depth=1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
   export PATH=${PATH}:$(pwd)/depot_tools
 
@@ -43,8 +43,9 @@ if [ ! -d "./v8build/v8" ]; then
   cd ../../../
 else
   # export necessary variables nonetheless
-  export PATH=${PATH}:$(pwd)/v8build/depot_tools
+  export PATH=${PATH}:$(pwd)/depot_tools
   export RELEASE=out.gn/x64.release
+  cd ./v8
 fi
 
 # from the chromium docs
